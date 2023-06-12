@@ -1,0 +1,368 @@
+
+#page-title{
+    margin-top: 12vh;
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-decoration-thickness: 4px;
+}
+
+#empty-cart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20vh;
+}
+
+
+#empty-cart button{
+    margin-top: 6vh;
+    padding: 10% 16%;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border-radius: 48px;
+    border: none;
+    background-color: var(--yellow);
+}
+
+#empty-cart button:hover{
+    outline: 2px solid black;
+}
+
+#empty-cart button:active{
+    background-color: rgb(233, 233, 233);
+}
+
+#container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90vw;
+    margin-top: 6vh;
+}
+
+/* phone */
+@media (max-width:500px){
+    #container{
+        flex-direction: column;
+        margin-top: 0;
+    }
+}
+
+
+#cart-products{
+    margin-top: 0;
+}
+
+/* phone */
+@media (max-width:500px){
+
+    #page-title{
+        margin-top: 11vh;
+        margin-bottom: 2vh;
+    }
+
+    #cart-products{
+        margin-top: 0vh;
+    }
+}
+
+.product-card{
+    background-color: var(--yellowLight);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 12rem;
+    width: 46vw;
+    margin-bottom: 4vh;
+    border-radius: 48px;
+}
+
+/* phone */
+@media (max-width:500px){
+    .product-card{
+        width: 90vw;
+        border-radius: 2rem;
+        margin-top: 0;
+        margin-bottom: 1.5vh;
+    }
+}
+
+.product-card-s1{
+    width: 12rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card-s1 img{
+    width: 80%;
+    height: 80%;
+}
+
+/* phone */
+@media (max-width:500px){
+    .product-card-s1{
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+
+.product-card-s2{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    padding: 0;
+}
+
+.product-card-s2 h2{
+    font-weight: 700;
+}
+
+.product-card-s2-2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 0;
+    padding-right: 6%;
+    margin-top: 1%;
+    width: 100%;
+}
+
+.product-card-s2-2 h3{
+    line-height: 110%;
+}
+
+.product-card-s2-2 h3 sub{
+    color: var(--grey);
+    text-decoration: line-through;
+}
+
+/* phone */
+@media (max-width:500px){
+    .product-card-s2{
+        padding:  2% 2%  2% 0;
+    }
+    .product-card-s2 h2{
+        line-height: 120%;
+        font-size: 1.4rem;
+        padding-right: 12px;
+        margin-top: 12px;
+        min-height: 48%;
+        max-height: 48%;
+    }
+
+    .product-card-s2-2{
+        height: 52%;
+    }
+}
+
+
+/*  */
+#cart-quantity{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 10vw;
+    height: 8vh;
+}
+
+#cart-quantity-label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+
+#cart-quantity form{
+    height: 100%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cart-qty-minus-btn{
+    background-color: rgba(151, 151, 151, 0.323);
+}
+
+#cart-qty-plus-btn{
+    background-color: black;
+}
+
+
+#cart-qty-plus-btn h3{
+    color: var(--yellowLight);
+}
+
+.cart-qty-change-btn{
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 20px;
+    border: none;
+    background:none;
+}
+
+
+.cart-qty-change-btn:active{
+    background-color: var(--grey);
+}
+
+/* phone */
+@media (max-width:500px){
+
+    #cart-quantity{
+        height: 6vh;
+        width: 22vw;
+    }
+
+    .cart-qty-change-btn{
+        min-height: 28px;
+        min-width: 28px;
+    }
+}
+
+/* ==== right section ===== */
+.right-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ====order summary==== */
+#order-summary-section{
+    width: 30vw;
+    padding: 1% 1%;
+}
+
+/* phone */
+@media (max-width:500px){
+    #order-summary-section{
+        width: 90vw;
+        margin-top: 2vh;
+        margin-bottom: 15vh;
+    }
+
+    #order-summary{
+        gap: 1vw;
+    }
+}
+
+#order-summary{
+    border: 2px solid black;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    width: 100%;
+    padding: 4% 8%;
+    margin-top: 1vw;
+}
+
+.order-summary-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-summary-row-label{
+    color: var(--grey);
+    font-size: 1.2rem;
+}
+
+#line{
+    width: 100%;
+    height: 1px;
+    background-color: var(--grey);
+    margin: 2vh 0;
+}
+
+/* ==== proceed section */
+#proceed-section-pc{
+    margin-top: 4vh;
+}
+
+#proceed-section-pc button{
+    width: auto;
+    height: auto;
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 48px;
+    border: none;
+    background-color: var(--yellow);
+}
+
+#proceed-section-pc button:hover{
+    outline: 1px solid black;
+}
+
+#proceed-section-pc button:active{
+    background-color: rgb(220, 220, 220);
+}
+
+/* phone */
+@media (max-width:500px){
+    #proceed-section-pc{
+        display: none;
+    }
+}
+
+
+
+#proceed-section-phone{
+    width: 100vw;
+    height: 12vh;
+    position: fixed;
+    bottom: 0;
+    padding: 4% 6%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    -webkit-box-shadow: 0px -4px 5px 0px rgba(220, 220, 220, 0.7);
+    -moz-box-shadow: 0px -4px 5px 0px rgba(220, 220, 220, 0.7);
+    box-shadow: 0px -4px 5px 0px rgba(220, 220, 220, 0.7);
+}
+
+#proceed-section-phone button{
+    width: auto;
+    height: auto;
+    padding: 16px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 48px;
+    border: none;
+    background-color: var(--yellow);
+}
+
+#proceed-section-phone button:active{
+    background-color: rgb(220, 220, 220);
+
+}
+
+/* pc */
+@media (min-width:800px) {
+    #proceed-section-phone{
+        display: none;
+    }
+}

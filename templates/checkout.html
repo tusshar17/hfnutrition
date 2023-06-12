@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check out | {{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/checkout.css">
+</head>
+<body>
+    {% load cart %}
+    {% include "header.html" %}
+
+    <h1 id="page-title">Check Out</h1>
+
+    <div id="checkout-form-container">
+
+        <div id="contact-details" class="checkout-form-sub-container">
+
+            <h2>Contact Details</h2>
+
+            <div class="form-field">
+                <label for="full-name">Full Name</label>
+                <input readonly type="text" name="full-name" value="{{customer.first_name}} {{customer.last_name}}">
+            </div>
+
+            <div class="form-field">
+                <label for="mobile-no">Mobile No.</label>
+                <input readonly type="tel" name="mobile-no" value="{{customer.phone}}">
+            </div>
+
+            <div class="form-field">
+                <label for="full-name">Email</label>
+                <input readonly type="email" name="email" value="{{customer.email}}">
+            </div>
+
+        </div>
+
+        <div id="address-details" class="checkout-form-sub-container">
+
+            <h2>Address Details</h2>
+            <form action="/checkout" method="post">
+                {% csrf_token %}
+            <div class="form-field">
+                <label for="address">Address (House No., Street Name, Area etc.)</label>
+                <input required type="text" name="address" value="{{address.address}}">
+            </div>
+
+            <div class="address-sub">
+
+                <div class="address-sub-1">
+                    <div class="form-field form-field2">
+                        <label for="pin">PIN</label>
+                        <input required type="number" name="pin" value="{{address.pin}}">
+                    </div>
+
+                    <div class="form-field form-field2">
+                        <label for="state">State</label>
+                        <input required type="text" name="state" value="{{address.state}}">
+                    </div>
+                </div>
+
+                <div class="address-sub-1">
+                    <div class="form-field form-field2">
+                        <label for="district">District</label>
+                        <input required type="text" name="district" value="{{address.district}}">
+                    </div>
+
+                    <div class="form-field form-field2">
+                        <label for="city">City/Town</label>
+                        <input required type="text" name="city" value="{{address.city}}">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+         <!-- start order summary -->
+         <div id="order-summary-section">
+            <h2>order summary</h2>
+            <div id="order-summary">
+                
+                <div class="order-summary-row">
+                    <h3 class="order-summary-row-label">Total MRP</h3>
+                    <h3 class="order-summary-row-value">Rs. 
+                        {{cart_products|total_cart_mrp_1}}
+                    </h3>
+                </div>
+
+                <div class="order-summary-row">
+                    <h3 class="order-summary-row-label">Total Discount</h3>
+                    <h3 class="order-summary-row-value"> -Rs. 
+                        {{cart_products|total_discount_1}}
+                    </h3>
+                </div>    
+                
+                <div class="order-summary-row">
+                    <h3 class="order-summary-row-label">Delivery</h3>
+                    <h3 class="order-summary-row-value">   
+                            {% if cart_products|total_cart_price_1 > 2000 %}
+                            Free
+                            {% else %}
+                            Rs. 199
+                            {% endif %}
+                    </h3>
+                </div>
+                
+                <span id="line"></span>
+                
+                <div class="order-summary-row">
+                    <h3 class="order-summary-row-label">Total</h3>
+                    <h3 class="order-summary-row-value">Rs. 
+                        {% if cart_products|total_cart_price_1 > 2000 %}
+                        {{cart_products|total_cart_price_1}}
+                        {% else %}
+                        {{cart_products|total_cart_price_1|add:199}}
+                        {% endif %}
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+        <!-- end order summary -->
+
+    </div>
+
+    <div class="place-order-ctas">
+        <button type="submit" id="place-order-btn">Place Order</button>
+        </form>
+        <button id="back2cart-btn" onclick="location.href= '/cart'">Go Back to <img src="/static/icons/shopping_cart_black_24dp.svg" alt=""></button>
+    </div>
+    
+
+</body>
+</html>

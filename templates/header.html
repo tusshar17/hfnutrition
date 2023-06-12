@@ -1,0 +1,15 @@
+
+    
+<!-- navbar-->
+<div class="nav-bar">
+    <a href="/"><h1>Healthify Nutrition</h1></a>
+    <div class="icon">
+        {% if request.session.customer_email or request.session.customer_phone  %}
+        <a href="{% url 'account' %}"><img src="/static/icons/person_black_24dp.svg" alt="user-icon" id="user-icon"></a>
+        {% else %}
+        <h2 id="login-signin-link"><a href="{% url 'signup-login' %}">LogIn/SignUp</a></h2>
+        {% endif %}
+        <a href="{% url 'cart' %}"><img src="/static/icons/shopping_cart_black_24dp.svg" alt="cart-icon"></a>
+    </div>
+</div>
+

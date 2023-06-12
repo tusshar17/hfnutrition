@@ -1,0 +1,81 @@
+/* ====SEARCH BAR==== */
+
+.search-bar{
+    height: 3rem;
+    margin-top: 12vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-color: var(--yellow);
+    border: 1px solid;
+    border-radius: 2.5rem;
+}
+
+.search-bar input[type=search]{
+    width: 80%;
+    height: 3.6rem;
+    padding: 4px;
+    padding-left: 16px;
+    margin-left: 4px;
+    border: none;
+    border-radius: 28px;
+    font-weight: 500;
+    font-size: 1.2rem;
+} 
+
+.search-bar input[type=search]:focus{
+    padding: 4px;
+    padding-left: 16px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border-radius: 28px;
+    border: none;
+    outline: none;
+
+}
+
+
+
+.search-bar button{
+    height: 56px;
+    width: 56px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.search-bar button img{
+    height: 28px;
+    width: 28px;
+}
+
+/* phone */
+@media (max-width:500px) {
+    .search-bar{
+        margin-top: 10vh;
+        width: 90vw;
+        height: 4rem;
+    }
+    .search-bar input[type=search]{
+        font-size: 1.5rem;
+    }
+    .search-bar input[type=search]:focus{
+        font-size: 1.5rem;
+    }
+}
+
+/* pc */
+@media (min-width:800px) {
+    .search-bar{
+        width: 40vw;
+    }
+    .search-bar input[type=search]{
+        height: 2.6rem;
+    }
+    
+    
+}

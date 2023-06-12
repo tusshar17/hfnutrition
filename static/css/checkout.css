@@ -1,0 +1,232 @@
+#page-title{
+    margin-top: 12vh;
+    margin-bottom: 6vh;
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-decoration-thickness: 4px;
+}
+
+#checkout-form-container{
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    gap: 8vh;
+}
+
+/* phone */
+@media (max-width:500px){
+    #page-title{
+        margin-bottom: 3vh;
+    }
+    #checkout-form-container{
+        flex-direction: column;
+        gap: 4vh;
+    }
+}
+
+.checkout-form-sub-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.checkout-form-sub-container h2{
+    margin-bottom: 0.5vh;
+}
+
+.form-field{
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+}
+
+/* phone */
+@media (max-width:500px){
+    .form-field{
+        width: 90vw;
+    }
+
+    .form-field input{
+        border: 1.5px solid var(--grey) !important;
+    }
+
+    .form-field label{
+        font-size: 1.2rem !important;
+        margin-left: 2vw; 
+    }
+
+    .checkout-form-sub-container h2{
+        margin-bottom: 0;
+    }
+}
+
+.form-field input{
+    border: 2px solid var(--grey);
+    border-radius: 12px;
+    padding: 2% 4%;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: black;
+}
+
+.form-field label{
+    color: var(--grey);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.address-sub{
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5vh;
+}
+
+.address-sub-1{
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    margin-bottom: 1.5vh;
+}
+
+.address-sub-1 input{
+    width: 12vw;
+    padding: 2% 6%;
+}
+
+.form-field2{
+    width: 12vw;
+}
+
+/* phone */
+@media (max-width:500px){
+
+    .address-sub-1{
+        max-width: 100%;
+        margin-bottom: 1vh;
+        justify-content: space-between;
+    }
+
+    .address-sub-1 input{
+        width: 40vw;
+        padding: 4% 12%;
+    }
+
+    .form-field2{
+        width: 40vw;
+    }
+}
+
+/* ====order summary==== */
+#order-summary-section{
+    width: 30vw;
+}
+
+/* phone */
+@media (max-width:500px){
+    #order-summary-section{
+        width: 90vw;
+        margin-top: 1vh;
+    }
+
+    #order-summary{
+        margin-top: 2vh !important;
+        border: 1.5px solid black !important;
+        gap: 1vw;
+    }
+}
+
+#order-summary{
+    border: 2px solid black;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    width: 100%;
+    padding: 4% 8%;
+    margin-top: 5vh;
+}
+
+.order-summary-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-summary-row-label{
+    color: var(--grey);
+    font-size: 1.2rem;
+}
+
+#line{
+    width: 100%;
+    height: 1px;
+    background-color: var(--grey);
+    margin: 2vh 0;
+}
+
+/* ======= */
+
+.place-order-ctas{
+    width: 85vw;
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 2vw;
+}
+
+#back2cart-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 18px 48px;
+    border: 1px solid black;
+    border-radius: 48px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: white;
+}
+
+#place-order-btn{
+    padding: 18px 64px;
+    border: none;
+    border-radius: 48px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: var(--yellow);
+}
+
+#place-order-btn:hover{
+    outline: 1px solid black;
+}
+
+#back2cart-btn:active, #place-order-btn:active{
+    background-color: rgb(220, 220, 220);
+
+}
+/* phone */
+@media (max-width:500px){
+    .place-order-ctas{
+        flex-direction: column-reverse;
+        margin-top: 3vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #back2cart-btn{
+        margin-bottom: 5vh;
+    }
+
+    #place-order-btn{
+        position: relative;
+        bottom: 0;
+        border-radius: 0;
+        font-size: 1.5rem;
+        width: 100vw;
+        height: 80px;
+    }
+
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/category.css">
+    <link rel="stylesheet" href="/static/css/product.css">
+    <link rel="stylesheet" href="/static/css/searchbar.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="/static/javascript/product.js" defer></script>
+</head>
+<body>
+
+{% include "header.html" %}
+
+
+
+{% load cart %}
+
+<!-- product pics and details -->
+<div class="product-sec">
+
+    <!-- pictures container -->
+    <div class="product-pictures">
+        <!-- main picture -->
+        <img src="/./{{imgs.0.img.url}}" alt="" id="product-main-pic">
+        <!-- button to change picture -->
+        <div class="pic-change-btns">
+            {% for img in imgs %}
+            <img class="pic-change-btn" src="/./{{img.img.url}}" alt="">
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- product details -->
+    <div class="product-details">
+
+        <h2 id="product-title">{{product.prod_name}}-{{product.brand}}<br>({{product.flavour}}, {{product.qty}})</h2>
+       
+        <h2 class="price"><sub>MRP : Rs. {{product.mrp}}</sub><br>Price : Rs. {{product.selling_price}} (Inclusive of all taxes)</h2>
+       
+        <div id="Available-Options"> 
+            <h3>Available Options</h3>
+            <div class="variants">
+                {% for variant in variants %}
+                {% if variant.qty == product.qty and variant.flavour == product.flavour %}
+                <button id="selected-variant">{{variant.flavour}}-{{variant.qty}}</button>
+                {% else %}
+                <a href="{% url 'productPage' variant.id %}">
+                    <button>{{variant.flavour}}-{{variant.qty}}</button>
+                </a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="CTAs">
+            <!-- if product is in cart -->
+            {% if is_product_in_cart %}
+            
+            <div id="cart-quantity">
+
+                <form action="/product/{{product.id}}" method="post">
+                    {% csrf_token %}
+                    <input hidden type="text" name="remove-item-from-cart" value="True">
+                    <button type="submit" id="cart-qty-minus-btn" class="cart-qty-change-btn"><h3> -</h3></button>
+                </form>
+
+                <div id="cart-quantity-label">
+                    <h3>
+                        {% if request.session.customer_email or request.session.customer_phone %}
+                        {{cart_product.qty}}
+                        {% else %}
+                         {{product|cart_quantity:request.session.cart}}
+                        {% endif %} 
+                         in </h3>
+                    <img src="./../static/icons/shopping_cart_black_24dp.svg" alt="">
+                </div>
+
+                <form action="/product/{{product.id}}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" id="cart-qty-plus-btn" class="cart-qty-change-btn"><h3>+</h3></button>
+                </form>
+            </div>
+
+            <button type="submit" id="proceed2cart" class="cart-btn" onclick="location.href= './../cart' ">Proceed to <img src="./../static/icons/shopping_cart_black_24dp.svg" alt=""></button>
+            
+
+            <!-- if product is not in cart -->
+            {% else %}
+            <form action="/product/{{product.id}}" method="post">
+                {% csrf_token %}
+                <button type="submit" id="add2cart" class="cart-btn">Add to <img src="./../static/icons/shopping_cart_black_24dp.svg" alt=""></button>
+            </form>
+            {% endif %}
+        </div>
+
+        
+
+    </div>
+
+
+</div>
+
+<div class="product-sec2">
+    
+    <div class="ps2-sub-sec">
+        <h1 class="content-heding">Nutritional Information</h1>
+        <img src="/./{{info_img.img.url}}" alt="">
+    </div>
+
+    <div class="ps2-sub-sec2">
+        <div class="ps2-sub-sec">
+            <h1 class="content-heading">Sold By</h1>
+            <p class="ps2-subsec-content">Healthify Nutrition</p>
+        </div>
+    
+        <div class="ps2-sub-sec">
+            <h1 class="content-heading">Free & Fast Delivery</h1>
+            <p class="ps2-subsec-content">Shipped on next day. Free shpping on orders
+                above Rs. 500. Shipping fee of Rs. 199 on orders less than Rs. 500. 
+            </p>
+        </div>
+    
+        <div class="ps2-sub-sec">
+            <h1 class="content-heading">Genuine Products</h1>
+            <p class="ps2-subsec-content">All our products are far from expiry, and 
+                procured directly from the brand or authorized importers only.</p>
+        </div>
+    
+        <div class="ps2-sub-sec">
+            <h1 class="content-heading">Brand</h1>
+            <p class="ps2-subsec-content">{{brand.Brand_Name}}<br>{{brand.Brand_Email}}<br>+91-{{brand.Brand_Contact}}</p>
+        </div>
+    </div>
+
+    
+
+</div>
+
+
+
+
+
+{% include "footer.html" %}
+
+</body>
+</html>

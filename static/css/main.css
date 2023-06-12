@@ -1,0 +1,250 @@
+
+
+/* ====Product ctgrs==== */
+
+.product-categories{
+    width: 90vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 13vh;
+}
+
+
+.product-categories ul{
+    width: 90vw;
+    height: auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* pc */
+@media (min-width:800px) {
+    .product-categories ul li:hover{
+        background-color: var(--yellowLight);
+    }
+
+    .product-categories ul li:active{
+        background-color: rgb(217, 217, 217);
+    }
+}
+
+/* phone */
+@media (max-width:500px) {
+    .product-categories ul{
+        justify-content: space-between;
+    }
+
+    .product-categories ul li:active{
+        background-color: var(--yellowLight);
+    }
+}
+
+
+.product-categories ul li{
+    height: 25vw;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    border-radius: 0.8rem;
+    margin-right: 1rem;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+/* phone */
+@media (max-width:500px) {
+    .product-categories ul li{
+        height: 25vw;
+        width: 25vw;
+        margin-right: 1rem;
+    }
+    .product-categories ul li:nth-child(1){
+        margin-bottom: 1rem;
+
+    }
+}
+
+/* pc */
+@media (min-width:800px) {
+    .product-categories ul li{
+        height: 8rem;
+        width: 8rem;
+        margin-right: 0.8rem;
+    }
+    
+}
+
+/* =====Top Brands==== */
+.brands-section{
+    width: 90vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3rem;
+}
+
+.brands-container{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1vw;
+}
+
+.brands-section img{
+    width: 15rem;
+    border: 3px solid black;
+    border-radius: 0.8rem;
+}
+
+/* phone */
+@media (max-width:500px){
+    .brands-container{
+        gap: 2vw;
+    }
+    .brands-section img{
+        width: 43vw;
+    }
+}
+
+
+/* ====Prdct Section==== */
+
+.product-section{
+    width: 90vw;
+    height: auto;
+    margin-top: 3rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tiles-container{
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    display: flex;
+    gap: 1vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/* phone */
+@media (max-width:500px){
+    .tiles-container{
+        flex-direction: column;
+        gap: 1vh;
+    }
+}
+
+.product-tile{
+    width: 90vw;
+    height: 10rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: var(--yellowLight);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* phone */
+@media (max-width:500px) {
+    .product-tile{
+        width: 90vw;
+        height: 10rem;
+    }
+}
+
+/* pc */
+@media (min-width:800px) {
+    .product-tile{
+       width: 29vw;
+       height: 10rem; 
+    }
+}
+
+.thumbnail{
+    width: 8rem;
+    height: 8rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+ .thumbnail img{
+    height: 8rem;
+    width: 8rem;
+}
+
+.product-info{
+    height: 6rem;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-name{
+    font-size: 1.35rem;
+    height: 6rem;
+    line-height: 2rem;
+    padding: 0.2rem;
+    text-align: left;
+}
+
+.product-prices{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.product-price-original{
+    color: var(--grey);
+    text-decoration: line-through;
+}
+
+.view-more-btn{
+    height: 56px;
+    width: 100%;
+    margin-top: 1.2rem;
+    border: none;
+    background-color: var(--yellow);
+    border-radius: 48px;
+    cursor: pointer;
+}
+
+
+/* pc */
+@media (min-width:800px){
+    .view-more-btn{
+        width: 15vw;
+    }
+    
+}
+
+.view-more-btn:hover{
+    outline: black 2px solid;
+}
+
+.view-more-btn:active{
+    transform: scale(0.98);
+}
+
+
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/category.css">
+    <link rel="stylesheet" href="/static/css/searchbar.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="/static/javascript/category.js" defer></script>
+</head>
+<body>
+
+{% include "header.html" %}
+
+
+<div class="category-title">
+    <h1>{{category}}</h1>
+</div>
+
+<div class="product-container">
+    {% for a in item_list %}
+    <a href="{% url 'productPage' a.id %}">
+    <div class="product-card">
+        {% for image in images %}
+        {% if image.product.id == a.id%}
+        <img src="./../{{image.img}}" alt="" class="product-img">
+        {% endif %}
+        {% endfor %}
+        <h2 class="product-name1">{{ a.prod_name }}-{{a.brand}}<br>({{a.flavour}}, {{a.qty}})</h2>
+        <h3 class="product-price">Price : Rs. {{a.selling_price}}<br><sup>MRP : Rs. {{a.mrp}}</sup></h3>
+        
+    </div>
+    </a>
+    {% endfor %}
+    
+
+</div>
+
+
+
+<div class="sort-section ">
+
+    <div class="sort-options">
+
+        <div class="sort-option">
+            <input hidden type="radio" name="sort-option" id="price-highest-first">
+            <label for="price-highest-first">Price (Highest First)</label>
+        </div>
+
+        <div class="sort-option">
+            <input hidden type="radio" name="sort-option" id="price-lowest-first">
+            <label for="price-lowest-first">Price (Lowest First)</label>
+        </div>
+
+        <div class="sort-option">
+            <input hidden type="radio" name="sort-option" id="popularity">
+            <label for="popularity">Latest First</label>
+        </div>
+
+    </div>
+
+
+    <button class="sort-btn">
+    <img src="/static/icons/sort.svg" alt="" class="sort-icon">
+        
+    <h3 class="sort-label">sort by : </h3>
+    {% if sortBy == 'LatestFirst' %}
+    <h2 class="sort-val">Latest First</h2>
+    {% elif sortBy == 'PriceHighestFirst'  %}
+    <h2 class="sort-val">Price (Highest First)</h2>
+    {% elif sortBy == 'PriceLowestFirst'  %}
+    <h2 class="sort-val">Price (Lowest First)</h2>
+    {% else %}
+    <h2 class="sort-val">Latest First</h2>
+    {% endif %}
+    </button>
+
+        
+</div>
+
+
+
+
+{% include "footer.html" %}
+
+
+
+
+</body>
+</html>

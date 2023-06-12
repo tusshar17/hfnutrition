@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Placed | {{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/order-placed.css">
+</head>
+<body>
+    
+    {% include "header.html" %}
+
+    <div id="tick-mark">
+        <img src="/static/icons/done_black_24dp.svg" alt="">
+    </div>
+
+    <h1 id="msg">
+        Congratulations! {{customer.first_name}}, <br> 
+        You Have Successfully Ordered Health At Your Doorstep 💪
+    </h1>
+
+    <div id="ctas">
+        <button onclick="location.href= '/'">Explore More Products</button>
+        <button onclick="location.href= '/my-orders'">View Your Orders</button>
+    </div>
+
+
+</body>
+</html>

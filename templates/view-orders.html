@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | {{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/view-orders.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+</head>
+<body>
+    
+    {% include "header.html" %}
+
+    <h1 id="page-title">My Orders</h1>
+
+    {% if no_orders %}
+    <div id="empty-orders">
+        <h1>what is this!</h1>
+        <h2>you haven't ordered anything yet 😞</h2>
+        <button onclick="location.href= '/'">Explore Products</button>
+    </div>
+    {% else %}
+    {% for order in orders %}
+    <div class="order-container">
+        <div class="first-row">
+            <div class="id-status">
+                <h2>ID: #{{order.id}}</h2>
+                <h2>Status: {{order.order_status}}</h2>
+            </div>
+            <div>
+                <h2>Ordered on: {{order.date}}</h2>
+                <h2>Order Total: Rs. {{order.order_total}}</h2>
+            </div>
+        </div>
+        {% for i in order_line %}
+        {% for j in i %}
+        {% if j.order_id.id == order.id %}
+        <div class="ordered-product">
+            {% for img in images %}
+            {% if img.product.id == j.product.id  %}
+            <img src="{{img.img}}" alt="">
+            {% endif %}
+            {% endfor %}
+            <div class="product-details">
+                <h3>
+                    {{j.product.prod_name}} - {{j.product.brand.Brand_Name}} <br>
+                    ({{j.product.flavour.value}}, {{j.product.qty.value}})
+                </h3>
+                <div>
+                    <h3>Rs. {{j.price}}</h3>
+                    <h3>Qty: {{j.qty}}</h3>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+
+        <div class="address">
+            <h3>Delivery Address: <br>
+            {{order.address.address}} <br>
+            {{order.address.city}} <br>
+            {{order.address.district}}, {{order.address.state}}
+            </h3>
+        </div>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    {% include "footer.html" %}
+
+</body>
+</html>

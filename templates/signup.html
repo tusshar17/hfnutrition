@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp | {{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <script src="/static/javascript/signup-login.js" defer></script>
+</head>
+<body>
+
+    <!-- nav-bar -->
+    <div class="nav-bar">
+        <a href="/"><h1>{{title}}</h1></a>
+    </div>
+    <!-- nav-bar end -->
+
+    <!-- signup form -->
+    <div class="signup-form">
+        <h2>SignUp Here</h2>
+        <form action="/signup" method="POST">
+            {% csrf_token %}
+            <div class="form-container">
+
+                <label for=""><h4>Email</h4></label>
+                <span id="email-error-msg" class="error-msg">{% if email_error %} {{email_error}} {% endif %}</span>               
+                <input required required type="email"  name="email" value="{{email}}" id="email" class="text-field">
+
+                <label for=""><h4>Mobile</h4></label>
+                <span id="email-error-msg" class="error-msg">{% if phone_error %} {{phone_error}} {% endif %}</span>               
+                <input required type="tel"  name="phone" value="{{phone}}" id="phone" class="text-field">
+
+                <label for=""><h4>First Name</h4></label>
+                <span id="email-error-msg" class="error-msg">{% if fname_error %} {{fname_error}} {% endif %}</span>               
+                <input required type="text"  name="fname" value="{{fname}}" id="f-name" class="text-field">
+
+                <label for=""><h4>Last Name</h4></label>
+                <span id="email-error-msg" class="error-msg">{% if lname_error %} {{lname_error}} {% endif %}</span>
+                <input required type="text"  name="lname" value="{{lname}}" id="l-name" class="text-field">
+                
+                <label for=""><h4>Password</h4></label>
+                <span id="email-error-msg" class="error-msg">{% if password_error %} {{password_error}} {% endif %}</span>
+                <input required type="password"  name="password" value="{{password}}" id="password" class="text-field">
+
+                <label for=""><h4>Confirm Password</h4></label>
+                <span id="email-error-msg" class="error-msg">{% if cpassword_error %} {{cpassword_error}} {% endif %}</span>
+                <input required type="password"  name="cpassword" value="{{cpassword}}" id="cpassword" class="text-field">
+
+                <input type="submit" value="Continue" id="continue-btn" class ="submit-btn">
+            </div>
+        </form>
+
+        <ul>
+            <li>Check your past orders</li>
+            <li>Access to your saved products</li>
+            <li>Track your orders</li>
+        </ul>
+
+    </div>
+
+    
+
+</body>
+</html>

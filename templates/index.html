@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/searchbar.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+</head>
+<body>
+
+{% include "header.html" %}
+
+
+
+<!-- What are you looking for -->
+<div class="product-categories">
+    <h1>what are you looking for?</h1>
+    <ul>
+
+        {% for category in categories %}
+        <a href="/category/{{category.id}}-{{category.Category_Name}}"><li><h2>{{category.Category_Name}}</h2></li></a>
+        {% endfor %}
+        
+    </ul>
+</div>
+
+
+
+
+{% for category in categories %}
+<!-- Category section -->
+<div class="product-section">
+
+    <div class="section-title">
+        <h1>trending in {{category.Category_Name}}</h1>
+    </div>
+
+    <div class="tiles-container">
+    {% for a in item_list %}
+    {% if a.category == category %}
+    <a href="/product/{{a.id}}">
+    <div class="product-tile">
+
+        <div class="thumbnail">
+            {% for image in images %}
+            {% if image.product.id == a.id%}
+            <img src="./../{{image.img}}" alt="">
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="product-info">
+            <h2 class="product-name">{{ a.brand }} - {{ a.prod_name }}</h2>
+            
+            <div class="product-prices">
+                <h3 class="product-price-dis">Starting from Rs. {{a.selling_price}}</h3>
+            </div>
+
+        </div>
+    </div>
+    </a>
+    {% endif %} 
+    {% endfor %}
+    </div>
+
+    <button class="view-more-btn" onclick="location.href= 'category/{{category.id}}-{{category.Category_Name}}' "><h2>View More</h2</button>
+
+
+</div>
+<!-- End Category section -->
+{% endfor %}
+
+{% include "footer.html" %}
+
+
+</body>
+</html>

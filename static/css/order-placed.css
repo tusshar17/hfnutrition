@@ -1,0 +1,70 @@
+#tick-mark{
+    margin-top: 20vh;
+    width: 20vh;
+    height: 20vh;
+    background-color: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+#tick-mark img{
+    width: 70%;
+    height: 70%;
+}
+
+#msg{
+   text-align: center;
+   margin-top: 6vh;
+   font-size: 1.4rem;
+   font-weight: 700; 
+}
+
+/* phone */
+@media (max-width:500px){
+    #msg{
+        font-size: 1.5rem;
+        width: 70vw;
+    }
+}
+
+#ctas{
+    display: flex;
+    gap: 2vw;
+    margin-top: 6vh;
+}
+
+#ctas button{
+    padding: 18px 48px;
+    border: none;
+    border-radius: 48px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: var(--yellow);
+}
+
+/* phone */
+@media (max-width:500px){
+    #ctas{
+        display: flex;
+        flex-direction: column;
+        gap: 6vw;
+        margin-top: 4vh;
+    }
+
+    #ctas button{
+        width: 60vw;
+        height: 48px;
+        padding: 0;
+    }
+}
+
+#ctas button:hover{
+    outline: 1px solid black;
+}
+
+#ctas button:active{
+    background-color: rgb(220, 220, 220);
+
+}

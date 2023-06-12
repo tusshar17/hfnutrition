@@ -1,0 +1,255 @@
+
+.category-title{
+    margin-top: 13vh;
+}
+
+/* phone */
+@media (max-width:500px){
+    .category-title{
+        margin-top: 10vh;
+    }
+}
+
+.category-title h1{
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-decoration-thickness: 4px;
+}
+
+.product-container{
+    z-index: 0;
+    width: 90vw;
+    height: auto;
+    margin-top: 5vh;
+    display: flex;
+    gap: 1.9vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.product-card{
+    width: 21vw;
+    height: 24vw;
+    padding: 2vw;
+    background-color: var(--yellowLight);
+    border-radius: 2rem;
+    display: flex;
+    gap: 0.5vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img{
+    width: 10vw;
+    height: 10vw;
+    margin-bottom: 1.5vh;
+}
+
+.product-card:hover .product-img{
+    transform: scale(1.06);
+    transition: 0.5s ease;
+}
+
+.product-name1{
+    width: 18vw;
+    min-height: 100px;
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+
+.product-price{
+    width: 18vw;
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+
+}
+
+.product-price sup{
+    text-decoration: line-through;
+    color: var(--grey);
+}
+
+/* phone */
+@media (max-width:500px){
+    .product-container{
+        margin-top: 2vh;
+        padding-left: 0.80vw;
+    }
+
+    .product-card{
+        width: 43vw;
+        height: 56vw;
+        border-radius: 1.2rem;
+        gap: 0vw;
+    }
+
+    .product-img{
+        width: 20vw;
+        height: 20vw;
+        margin-bottom: 3vw;
+        margin-top: 2vw;
+    }
+
+    .product-name1{
+        width: 38vw;
+        min-height: 18vw;
+        max-height: 18vw;
+        text-align: left;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        padding-left: 2vw;
+    }
+
+    .product-price{
+        width: 38vw;
+        margin-top: 1vw;
+        text-align: left;
+        font-size: 1.3rem;
+        line-height: 1.5rem;
+        padding-left: 2vw;
+    }
+}
+
+/* pc */
+@media (min-width:800px) {
+    
+}
+
+.sort-section{
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sort-btn{
+    width: 100vw;
+    height: 8vh;
+    padding-right: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+    background: white;
+}
+
+/* phone */
+@media (max-width:500px){
+.sort-btn{
+    -webkit-box-shadow: 0px -4px 5px 0px rgba(220, 220, 220, 0.7);
+    -moz-box-shadow: 0px -4px 5px 0px rgba(220, 220, 220, 0.7);
+    box-shadow: 0px -4px 5px 0px rgba(220, 220, 220, 0.7);
+}
+
+}
+
+.sort-icon{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.sort-options{
+    width: 96%;
+    margin-bottom: 1vh;
+    border: 2px solid black;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    transform: translateX(120%);
+    transition-duration: 0.5s;
+}
+
+
+.sort-options-active{
+    transition-duration: 0.5s;
+    transform: translateX(0);
+}
+
+
+
+.sort-option{
+    width: 100%;
+    padding: 1.2vh;
+    padding-left: 2vh;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.sort-option label{
+    width: 90%;
+}
+
+
+.sort-option:hover{
+    background-color: rgb(186, 186, 186);
+}
+
+.sort-options :nth-child(1){
+    border-radius: 24px 24px 0 0;
+}
+
+.sort-options :nth-child(3){
+    border-radius: 0 0 24px 24px ;
+}
+
+.sort-option label{
+    font-size: 1.5rem;
+}
+
+/* pc */
+@media (min-width:800px) {
+
+    .sort-section{
+        bottom: 3vh;
+        right: 3vh;
+        width: 18vw;
+        border-radius: 48px;
+    }
+
+    .sort-icon{
+        width: 18vw;
+    }
+
+    .sort-btn{
+        width: 18vw;
+        padding-right: 0;
+        border-radius: 48px;
+        border: none;
+        background-color: var(--yellow);
+    }
+
+    .sort-icon{
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+    .sort-val{
+        font-size: 1rem;
+    }
+    
+    .sort-label{
+        font-size: 1rem;
+    }
+
+    .sort-option label{
+        font-size: 1.2rem;
+    }
+
+}

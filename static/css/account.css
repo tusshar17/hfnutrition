@@ -1,0 +1,60 @@
+.content{
+    margin-top: 18vh;
+    margin-bottom: 6vh;
+    display: flex;
+    flex-direction: column;
+    width:20vw;
+}
+
+#welcome-msg{
+    margin-bottom: 2vh;
+}
+
+.content button{
+    height: 8vh;
+    width: 20vw;
+    margin-top: 1.6rem;
+    border: none;
+    border-radius: 48px;
+    background-color: var(--yellow);
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* phone */
+@media (max-width:500px) {
+
+    .content{
+        width: 80vw;
+    }
+
+    .content button{
+        width: 80vw;
+        height: 6.4vh;
+    }
+}
+
+#logout-label{
+    margin-top: 1.6rem;
+    margin-left: 16px;
+}
+
+#logout-btn{
+    margin-top: 0.2rem;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#logout-btn:hover{
+    background-color: var(--yellowLight);
+}
+
+
+.content button:hover{
+    border: 2px solid black;
+}
+
+.content button:active{
+    background: none;
+}

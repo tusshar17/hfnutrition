@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/cart.css">
+
+</head>
+<body>
+
+    {% load cart %}
+
+    {% include "header.html" %}
+
+    <h1 id="page-title">My cart</h1>
+
+    {% if is_cart_empty %}
+    <div id="empty-cart">
+        <h1>oops!</h1>
+        <h2>your cart is empty 😲</h2>
+        <button onclick="location.href= '/'">Explore Products</button>
+    </div>
+
+    {% else %}
+    <div id="container">
+        <!-- start cart products -->
+        <div id="cart-products">
+
+            {% for product in cart_products %}
+            <div class="product-card">
+
+                <div class="product-card-s1">
+                    {% if user_logged_in %}
+                    <a href="/product/{{product.product.id}}"><img src="/./{{img|dict_key:product.product.id}}    " alt=""></a>
+                    {% else %}
+                    <a href="/product/{{product.id}}"><img src="/./{{img|dict_key:product.id}}    " alt=""></a>
+                    {% endif %}
+                </div>
+
+                <div class="product-card-s2">
+                    {% if user_logged_in %}
+                    <a href="/product/{{product.product.id}}">
+                        <h2>{{product.product.prod_name}} - {{product.product.brand}} 
+                        <br>({{product.product.flavour}}, {{product.product.qty}})</h2>
+                    </a>
+                    {% else %}
+                    <a href="/product/{{product.id}}">
+                    <h2>{{product.prod_name}} - {{product.brand}} 
+                        <br>({{product.flavour}}, {{product.qty}})</h2>
+                    </a>
+                        {% endif %}
+
+                    <div class="product-card-s2-2">
+                        {% if user_logged_in %}
+                        <h3><sub>MRP: Rs.{{product.product.mrp}}</sub> <br> Price: Rs.{{product.product.selling_price}}</h3>
+                        {% else %}
+                        <h3><sub>MRP: Rs.{{product.mrp}}</sub> <br>Price: Rs. {{product.selling_price}}</h3>
+                        {% endif %}
+
+                        <!-- start product quantity in cart -->
+                        <div id="cart-quantity">
+                            
+                            <!-- (-) button -->
+                            <form action="/cart" method="post">
+                                {% csrf_token %}
+                                <input hidden type="text" name="remove-item-from-cart" value="True">
+                                {% if user_logged_in %}
+                                <input hidden type="text" name="post-prod-id" value={{product.product.id}} >
+                                {% else %}
+                                <input hidden type="text" name="post-prod-id" value={{product.id}} >
+                                {% endif %}
+                                <button type="submit" id="cart-qty-minus-btn" class="cart-qty-change-btn"><h3> -</h3></button>
+                            </form>
+                            
+                            <!-- product quantity value -->
+                                <h3 id="cart-quantity-label">
+                                    {% if request.session.customer_email or request.session.customer_phone %}
+                                    {{product.qty}}
+                                    {% else %}
+                                    {{product|cart_quantity:request.session.cart}}
+                                    {% endif %} 
+                                    </h3>
+                            
+                            
+                            <!-- (+) button -->
+                            <form action="/cart" method="post">
+                                {% csrf_token %}
+                                {% if user_logged_in %}
+                                <input hidden type="text" name="post-prod-id" value={{product.product.id}} >
+                                {% else %}
+                                <input hidden type="text" name="post-prod-id" value={{product.id}} >
+                                {% endif %}
+                                <button type="submit" id="cart-qty-plus-btn" class="cart-qty-change-btn"><h3>+</h3></button>
+                            </form>
+                        </div>
+                        <!-- end product quantity in cart -->
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- end of product card -->
+
+        </div>
+        <!-- end cart products -->
+
+        <div class="right-container">
+            <!-- start order summary -->
+            <div id="order-summary-section">
+                <h2>order summary</h2>
+                <div id="order-summary">
+                    
+                    <div class="order-summary-row">
+                        <h3 class="order-summary-row-label">Total MRP</h3>
+                        <h3 class="order-summary-row-value">Rs. 
+                            {% if request.session.customer_email or request.session.customer_phone %}
+                            {{cart_products|total_cart_mrp_1}}
+                            {% else %}
+                            {{cart_products|total_cart_mrp:request.session.cart}}
+                            {% endif %}
+                        </h3>
+                    </div>
+
+                    <div class="order-summary-row">
+                        <h3 class="order-summary-row-label">Total Discount</h3>
+                        <h3 class="order-summary-row-value"> -Rs. 
+                            {% if request.session.customer_email or request.session.customer_phone %}
+                            {{cart_products|total_discount_1}}
+                            {% else %}
+                            {{cart_products|total_discount:request.session.cart}}
+                            {% endif %}
+                        </h3>
+                    </div>    
+                    
+                    <div class="order-summary-row">
+                        <h3 class="order-summary-row-label">Delivery</h3>
+                        <h3 class="order-summary-row-value">
+                            {% if request.session.customer_email or request.session.customer_phone %}
+                            
+                            {% if cart_products|total_cart_price_1 > 2000 %}
+                            Free
+                            {% else %}
+                            Rs. 199
+                            {% endif %}
+
+                            {% else %}
+                            
+                            {% if cart_products|total_cart_price:request.session.cart > 2000 %}
+                            Free
+                            {% else %}
+                            Rs. 199
+                            {% endif %}
+
+                            {% endif %}
+                        </h3>
+                    </div>
+                    
+                    <span id="line"></span>
+                    
+                    <div class="order-summary-row">
+                        <h3 class="order-summary-row-label">Total</h3>
+                        <h3 class="order-summary-row-value">Rs. 
+                            {% if request.session.customer_email or request.session.customer_phone %}
+                            
+                            {% if cart_products|total_cart_price_1 > 2000 %}
+                            {{cart_products|total_cart_price_1}}
+                            {% else %}
+                            {{cart_products|total_cart_price_1|add:199}}
+                            {% endif %}
+
+                            {% else %}
+                            
+                            {% if cart_products|total_cart_price:request.session.cart > 2000 %}
+                            {{cart_products|total_cart_price:request.session.cart}}
+                            {% else %}
+                            {{cart_products|total_cart_price:request.session.cart|add:199}}
+                            {% endif %}
+
+                            {% endif %}
+                            
+                            
+                        </h3>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end order summary -->
+
+            <div id="proceed-section-pc">
+                <button onclick="location.href= '/checkout'">Proceed <img src="/static/icons/arrow_forward_black_24dp.svg" alt=""></button>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div id="proceed-section-phone">
+        <div id="proceed-section-phone-label">
+            <h3>Total ({{number_of_prod_in_cart}} Items)</h3>
+            <h2>Rs.
+                {% if request.session.customer_email or request.session.customer_phone %}
+                            
+                            {% if cart_products|total_cart_price_1 > 2000 %}
+                            {{cart_products|total_cart_price_1}}
+                            {% else %}
+                            {{cart_products|total_cart_price_1|add:199}}
+                            {% endif %}
+
+                            {% else %}
+                            
+                            {% if cart_products|total_cart_price:request.session.cart > 2000 %}
+                            {{cart_products|total_cart_price:request.session.cart}}
+                            {% else %}
+                            {{cart_products|total_cart_price:request.session.cart|add:199}}
+                            {% endif %}
+
+                            {% endif %}
+            </h2>
+            <h4>Inclusive of all taxes</h4>
+        </div>
+        <button onclick="location.href= '/checkout'">Proceed <img src="/static/icons/arrow_forward_black_24dp.svg" alt=""></button>
+    </div>
+    {% endif %}
+</body>
+</html>

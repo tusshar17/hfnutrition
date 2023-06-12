@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp | {{title}}</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <script src="/static/javascript/signup-login.js" defer></script>
+</head>
+<body>
+
+    <!-- nav-bar -->
+    <div class="nav-bar">
+        <a href="/"><h1>{{title}}</h1></a>
+    </div>
+    <!-- nav-bar end -->
+
+    <!-- signup form -->
+    <div class="signup-form">
+
+        {% if can_login %}
+        <h2>LogIn Here</h2>
+        <form action="/signup-login" method="POST" novalidate>
+            {% csrf_token %}
+            <div class="form-container">
+                <label for=""><h4>Email or Mobile Number</h4></label>
+                <input readonly type="email"  name="email-phone" value="{{email_phone}}" id="email-phone" class="text-field">
+                
+                <label for=""><h4>Password</h4></label>
+                <span id="password-error-msg" class="error-msg"> {{error_msg}}</span>               
+                <input type="password"  name="password" value="{{password}}" id="password" class="text-field">
+
+                <input type="submit" value="Continue" id="continue-btn" class ="submit-btn">
+            </div>
+        </form>
+
+
+        {% else %}
+        <h2>LogIn or SignUp Here</h2>
+        <form action="/signup-login" method="POST" novalidate>
+            {% csrf_token %}
+            <div class="form-container">
+
+                <label for=""><h4>Email or Mobile Number</h4></label>
+                <span id="email-error-msg" class="error-msg"> {{error_msg}}</span>               
+                <input type="email"  name="email-phone" value="{{email_phone}}" id="email-phone" class="text-field"> 
+                
+                <input type="submit" value="Continue" id="continue-btn" class ="submit-btn">
+            </div>
+        </form>
+        
+        {% endif %}
+
+
+        <ul>
+            <li>Check your past orders</li>
+            <li>Access to your saved products</li>
+            <li>Track your orders</li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

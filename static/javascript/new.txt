@@ -1,0 +1,50 @@
+        
+        # if (not error_msg):
+        #     if email_phone in email_list+phone_list:
+        #         data['email_phone'] = email_phone
+        #         data['can_login'] = True
+        #         received_password = post_data.get('password')
+        #         if received_password:
+        #             customer = Customer.get_customer_by_contact(email_phone)
+        #             customer_password = customer.password
+        #             if received_password == customer_password:
+        #                 request.session['customer_email'] = email_phone
+        #                 print(request.session['customer_email'])
+        #                 return redirect('home')
+        #             else:
+        #                 data['password'] = received_password
+        #                 data['error_msg'] = "*Please enter correct password"
+        #                 return render(request, "signup-login.html", data)
+
+                
+        #         else:
+        #             return render(request, "signup-login.html", data)
+            
+        #     else:
+        #         data['need_to_sign_in'] = True
+        #         if '@' in email_phone:
+        #             data['email'] = email_phone
+        #         else:
+        #             data['phone'] = email_phone
+        #         return render(request, "signup-login.html", data)
+
+
+        # else:
+        #     data['error_msg'] = error_msg
+        #     data['email_phone'] = email_phone
+        #     return render(request, "signup-login.html", data)
+
+
+
+
+
+
+
+============================
+
+                <!-- <span id="email-error-msg" class="error-msg">{%if errors['email']%} {{errors['email']}} {%endif%}</span>                -->
+                <!-- <span id="email-error-msg" class="error-msg">{%if errors['phone']%} {{errors['phone']}} {%endif%}</span>                -->
+                <!-- <span id="email-error-msg" class="error-msg">{%if errors['fname']%} {{errors['fname']}} {%endif%}</span>                -->
+                <!-- <span id="email-error-msg" class="error-msg">{%if errors['lname']%} {{errors['lname']}} {%endif%}</span>                -->
+                <!-- <span id="email-error-msg" class="error-msg">{%if errors['password']%} {{errors['password']}} {%endif%}</span>                -->
+                <!-- <span id="email-error-msg" class="error-msg">{%if errors['cpassword']%} {{errors['cpassword']}} {%endif%}</span>                -->
