@@ -105,8 +105,7 @@ class Product_Page(View):
                 
 
             else:
-                #product is not in cart
-                prouct_instance = Product.get_product_by_id(productid)[0]
+                prouct_instance = Product.get_product_by_id([productid])[0]
                 cart_product = Cart(user=customer, product = prouct_instance, qty=1)
                 cart_product.register() 
 
@@ -189,7 +188,6 @@ class Cart_Page(View):
             user_logged_in = False
 
         prod_id = request.POST.get("post-prod-id")
-        print(prod_id)
         if user_logged_in:
             if request.session.get('customer_email'):
                 customer_email = request.session['customer_email']
@@ -307,7 +305,6 @@ class CheckOut(View):
         state1 = request.POST.get('state')
         district1 = request.POST.get('district')
         city1 = request.POST.get('city')
-        print(address1, pin1, state1, district1, city1)
         is_address_same = None
         if Address_Book.is_address_exists(customer):
             registered_add = Address_Book.get_customer_address(customer)
@@ -436,7 +433,7 @@ def my_orders(request):
         for order in data['orders']:
             data['order_line'].append(Order_Line.get_orderline(order.id))
     
-    print(data)
+    
 
     return render(request, "view-orders.html", data)
 # -------------------------------------------------
@@ -485,11 +482,10 @@ def signup_login(request):
     if request.method == 'GET':
         global returnURL
         returnURL = request.GET.get('return_url')
-        print("1---",returnURL)
         return render(request, "signup-login.html", data)
 
     else:
-        print("2---",returnURL)
+        
         post_data = request.POST
         email_phone = post_data.get('email-phone')
 
@@ -523,13 +519,12 @@ def signup_login(request):
                         else:
                             request.session['customer_phone'] = email_phone
                         
-                        print("3---",returnURL)
+                        
                         if returnURL =='/checkout':
                             cart = request.session.get('cart')
-                            print(cart)
                             for id in cart:
                                 qty = cart[id]
-                                print(id,qty)
+                                
                                 if Cart.is_product_in_cart(customer, id):
                                     cart_products = Cart.get_particular_product(customer, id)
                                     cart_products.qty += 1
@@ -537,7 +532,7 @@ def signup_login(request):
                                 else:
                                     cart_instance = Cart(
                                         user=customer, 
-                                        product=Product.get_product_by_id(id)[0],
+                                        product=Product.get_product_by_id([id])[0],
                                         qty=qty
                                         )
                                     cart_instance.register()
@@ -656,13 +651,11 @@ def signup(request):
             request.session['customer_email'] = data['email']
             
             
-            print(returnURL)
+            
             if returnURL =='/checkout':
                 cart = request.session.get('cart')
-                print(cart)
                 for id in cart:
                     qty = cart[id]
-                    print(id,qty)
                     if Cart.is_product_in_cart(customer, id):
                         cart_products = Cart.get_particular_product(customer, id)
                         cart_products.qty += 1
@@ -670,7 +663,7 @@ def signup(request):
                     else:
                         cart_instance = Cart(
                             user=customer, 
-                            product=Product.get_product_by_id(id)[0],
+                            product=Product.get_product_by_id([id])[0],
                             qty=qty
                             )
                         cart_instance.register()
